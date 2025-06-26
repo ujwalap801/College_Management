@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+
+<main class="bg-light min-vh-100 py-5">
+  <div class="container mt-4">
+    <h2>Edit Mark Entry</h2>
+
+    <!-- Include error display if needed -->
+    <%- include('../partials/error') %>
+
+    <form action="/marks/edit/<%= mark.id %>" method="POST" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label class="form-label">Course</label>
+        <select name="course_id" class="form-select" required>
+          <option value="" disabled>Select a course</option>
+          <% courses.forEach(course => { %>
+            <option value="<%= course.id %>" <%= course.id === mark.course_id ? 'selected' : '' %>>
+              <%= course.name %> (<%= course.code %>)
+            </option>
+          <% }) %>
+        </select>
+        <div class="invalid-feedback">Please select a course.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Marks</label>
+        <input
+          type="number"
+          name="marks"
+          class="form-control"
+          min="0"
+          max="100"
+          value="<%= mark.marks %>"
+          required
+        />
+        <div class="invalid-feedback">Please enter valid marks between 0 and 100.</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Update Mark</button>
+      <a href="/marks/view/<%= mark.student_id %>" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>
+
+<!-- Load form validation script -->
+<script src="/js/form-validation.js"></script>

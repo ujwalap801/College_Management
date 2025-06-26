@@ -1,0 +1,53 @@
+<%- include('../partials/header') %>
+
+<main class="bg-light min-vh-100 py-5">
+  <div class="container mt-4">
+    <h2>Edit Student</h2>
+        <!-- Error display -->
+    <%- include('../partials/error') %>
+    
+    <form action="/students/edit/<%= student.id %>" method="POST" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" value="<%= student.name %>" required>
+        <div class="invalid-feedback">Please enter the name.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Roll No</label>
+        <input type="text" name="roll_no" class="form-control" value="<%= student.roll_no %>" required>
+        <div class="invalid-feedback">Please enter the roll number.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" value="<%= student.email %>" required>
+        <div class="invalid-feedback">Please enter a valid email address.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Phone</label>
+        <input type="number" name="phone" class="form-control" value="<%= student.phone %>" required>
+        <div class="invalid-feedback">Please enter a valid phone number.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Department</label>
+        <input type="text" name="department" class="form-control" value="<%= student.department %>" required>
+        <div class="invalid-feedback">Please enter the department.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Year</label>
+        <input type="number" name="year" class="form-control" value="<%= student.year %>" min="1" max="4" required>
+        <div class="invalid-feedback">Please enter a year between 1 and 4.</div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Update Student</button>
+    </form>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>
+<!-- Load form validation script -->
+<script src="/js/form-validation.js"></script>

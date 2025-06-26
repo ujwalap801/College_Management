@@ -1,0 +1,99 @@
+<%- include('../partials/header') %>
+
+
+<main class="bg-light min-vh-100 py-5">
+<div class="container mt-4">
+  <h2>Marks for Student ID: <%= studentId %></h2>
+
+  <% if (marks.length === 0) { %>
+    <p>No marks available.</p>
+  <% } else { %>
+    <table class="table table-bordered align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th>Course</th>
+          <th>Code</th>
+          <th>Marks</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% marks.forEach(mark => { %>
+          <tr>
+            <td><%= mark.course_name %></td>
+            <td><%= mark.code %></td>
+            <td><%= mark.marks %></td>
+            <td>
+              <!-- Edit Button -->
+              <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editModal<%= mark.id %>">
+                Edit
+              </button>
+
+              <!-- Delete Button -->
+              <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal<%= mark.id %>">
+                Delete
+              </button>
+
+              <!-- Edit Modal -->
+              <div class="modal fade" id="editModal<%= mark.id %>" tabindex="-1" aria-labelledby="editModalLabel<%= mark.id %>" aria-hidden="true">
+                <div class="modal-dialog">
+                  <form method="POST" action="/marks/edit/<%= mark.id %>" class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="editModalLabel<%= mark.id %>">Edit Marks</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      <div class="mb-3">
+                        <label class="form-label">Course</label>
+                        <select name="course_id" class="form-select" required>
+                          <% allCourses.forEach(course => { %>
+                            <option value="<%= course.id %>" <%= course.id === mark.course_id ? 'selected' : '' %>>
+                              <%= course.name %> (<%= course.code %>)
+                            </option>
+                          <% }) %>
+                        </select>
+                      </div>
+                      <div class="mb-3">
+                        <label class="form-label">Marks</label>
+                        <input type="number" name="marks" class="form-control" value="<%= mark.marks %>" min="0" max="100" required>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-primary">Save Changes</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+              <!-- Delete Modal -->
+              <div class="modal fade" id="deleteModal<%= mark.id %>" tabindex="-1" aria-labelledby="deleteModalLabel<%= mark.id %>" aria-hidden="true">
+                <div class="modal-dialog">
+                  <form action="/marks/delete/<%= mark.id %>" method="GET" class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="deleteModalLabel<%= mark.id %>">Confirm Delete</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                      Are you sure you want to delete marks for <strong><%= mark.course_name %></strong>?
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-danger">Yes, Delete</button>
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <a href="/students" class="btn btn-secondary mt-3">Back to Students</a>
+</div>
+</main>
+
+<%- include('../partials/footer') %>

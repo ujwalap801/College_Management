@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+
+<main class="bg-light min-vh-100 py-5">
+<div class="container mt-4">
+  <h2>Add Course</h2>
+      <!-- Include error display if needed -->
+ <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+  <div class="alert alert-danger">
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= error %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+
+  <form action="/courses/add" method="POST" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" name="name" class="form-control" id="name" required>
+      <div class="invalid-feedback">Please enter a course name.</div>
+    </div>
+    <div class="mb-3">
+      <label for="code" class="form-label">Code</label>
+      <input type="text" name="code" class="form-control" id="code" required>
+      <div class="invalid-feedback">Please enter a course code.</div>
+    </div>
+    <div class="mb-3">
+      <label for="department" class="form-label">Department</label>
+      <input type="text" name="department" class="form-control" id="department" required>
+      <div class="invalid-feedback">Please enter a department name.</div>
+    </div>
+    <div class="mb-3">
+      <label for="credits" class="form-label">Credits</label>
+      <input type="number" name="credits" class="form-control" id="credits" min="1" max="10" required>
+      <div class="invalid-feedback">Please enter valid credits (1–10).</div>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Course</button>
+  </form>
+</div>
+</main>
+
+
+<%- include('../partials/footer') %>
+<!-- Load form validation script -->
+<script src="/js/form-validation.js"></script>

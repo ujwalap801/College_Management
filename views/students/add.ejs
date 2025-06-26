@@ -1,0 +1,58 @@
+<%- include('../partials/header') %>
+
+<main class="bg-light min-vh-100 py-5">
+  <div class="container mt-4">
+    <h2>Add New Student</h2>
+
+
+        <!-- Error display -->
+    <%- include('../partials/error') %>
+
+    
+    <!-- Bootstrap validation-enabled form -->
+    <form action="/students/add" method="POST" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" required value="<%= student?.name || '' %>">
+        <div class="invalid-feedback">Please enter the name.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Roll No</label>
+        <input type="text" name="roll_no" class="form-control" required value="<%= student?.roll_no || '' %>">
+        <div class="invalid-feedback">Please enter the roll number.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" required value="<%= student?.email || '' %>">
+        <div class="invalid-feedback">Please enter a valid email address.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Phone</label>
+        <input type="number" name="phone" class="form-control" required value="<%= student?.phone || '' %>">
+        <div class="invalid-feedback">Please enter a valid phone number.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Department</label>
+        <input type="text" name="department" class="form-control" required value="<%= student?.department || '' %>">
+        <div class="invalid-feedback">Please enter the department.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Year</label>
+        <input type="number" name="year" class="form-control" min="1" max="4" required value="<%= student?.year || '' %>">
+        <div class="invalid-feedback">Please enter a year between 1 and 4.</div>
+      </div>
+
+      <button type="submit" class="btn btn-success">Add Student</button>
+    </form>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>
+
+<!-- Load form validation script -->
+<script src="/js/form-validation.js"></script>

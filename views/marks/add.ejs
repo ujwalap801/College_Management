@@ -1,0 +1,60 @@
+<%- include('../partials/header') %>
+
+<main class="bg-light min-vh-100 py-5">
+  <div class="container mt-4">
+    <h2>Add Marks for Student ID: <%= studentId %></h2>
+
+    <!-- Error partial if needed -->
+    <%- include('../partials/error') %>
+    <% if (errorMessage) { %>
+  <div class="alert alert-danger">
+    <%= errorMessage %>
+  </div>
+<% } %>
+
+    <form action="/marks/<%= studentId %>" method="POST" class="needs-validation" novalidate>
+      <div class="mb-3">
+        <label class="form-label">Course</label>
+        <!-- <select name="course_id" class="form-select" required>
+          <option value="" disabled selected>Select a course</option>
+          <% courses.forEach(course => { %>
+            <option value="<%= course.id %>"><%= course.name %> (<%= course.code %>)</option>
+          <% }) %>
+        </select> -->
+
+<select name="course_id" class="form-select" required>
+  <% courses.forEach(course => { %>
+    <option value="<%= course.id %>" <%= formData.course_id == course.id ? 'selected' : '' %>>
+      <%= course.name %> (<%= course.code %>)
+    </option>
+  <% }) %>
+</select>
+
+
+
+
+        <div class="invalid-feedback">Please select a course.</div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Marks</label>
+        <input
+          type="number"
+          name="marks"
+          class="form-control"
+          min="0"
+          max="100"
+          required
+        >
+        <div class="invalid-feedback">Please enter marks between 0 and 100.</div>
+      </div>
+
+      <button type="submit" class="btn btn-success">Submit Marks</button>
+    </form>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>
+
+<!-- Load form validation script -->
+<script src="/js/form-validation.js"></script>

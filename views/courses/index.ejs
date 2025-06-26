@@ -1,0 +1,47 @@
+<%- include('../partials/header') %>
+
+<main class="bg-light min-vh-100 py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Courses</h2>
+
+    <div class="d-flex justify-content-center justify-content-md-end mb-3">
+      <a href="/courses/add" class="btn btn-primary">Add Course</a>
+    </div>
+
+    <!-- Responsive Table -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Department</th>
+            <th>Credits</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% courses.forEach(course => { %>
+            <tr>
+              <td><%= course.name %></td>
+              <td><%= course.code %></td>
+              <td><%= course.department %></td>
+              <td><%= course.credits %></td>
+              <td>
+              <div class="d-flex flex-wrap">
+  <a href="/courses/edit/<%= course.id %>" class="btn btn-sm btn-warning me-2">Edit</a>
+  <a href="/courses/delete/<%= course.id %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete this course?')">Delete</a>
+</div>
+
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>
+
+

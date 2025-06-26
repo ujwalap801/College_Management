@@ -1,0 +1,46 @@
+<%- include('../partials/header') %>
+
+<main class="bg-light min-vh-100 py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Faculty List</h2>
+
+    <div class="d-flex justify-content-center justify-content-md-end mb-3">
+      <a href="/faculty/add" class="btn btn-primary">Add Faculty</a>
+    </div>
+
+    <!-- Responsive Table Wrapper -->
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Department</th>
+            <th>Designation</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% faculty.forEach(member => { %>
+            <tr>
+              <td><%= member.name %></td>
+              <td><%= member.email %></td>
+              <td><%= member.phone %></td>
+              <td><%= member.department %></td>
+              <td><%= member.designation %></td>
+              <td>
+                <div class="d-flex flex-wrap gap-2">
+                  <a href="/faculty/edit/<%= member.id %>" class="btn btn-sm btn-warning">Edit</a>
+                  <a href="/faculty/delete/<%= member.id %>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure to delete this faculty member?')">Delete</a>
+                </div>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

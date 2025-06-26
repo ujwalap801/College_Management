@@ -1,0 +1,21 @@
+<%- include('./partials/header') %>
+
+<main class="bg-light min-vh-100 d-flex flex-column justify-content-center align-items-center text-center py-5">
+  <div class="container">
+    <h1 class="display-4 fw-bold mb-4">College Data Management System</h1>
+    <p class="lead mb-5 text-secondary">Manage all Our student, course, and faculty information efficiently.</p>
+
+    <div class="d-flex flex-column flex-md-row justify-content-center gap-4 mb-5">
+      <a href="/students" class="btn btn-primary btn-lg px-5 py-3">Manage Students</a>
+      <a href="/courses" class="btn btn-success btn-lg px-5 py-3">Manage Courses</a>
+      <a href="/faculty" class="btn btn-info btn-lg text-white px-5 py-3">Manage Faculty</a>
+    </div>
+
+    <div class="mt-4 text-muted small">
+      <i class="bi bi-info-circle-fill me-2"></i>
+      Tip: Navigate using the menu above or choose an option to begin managing Our college database.
+    </div>
+  </div>
+</main>
+
+<%- include('./partials/footer') %>

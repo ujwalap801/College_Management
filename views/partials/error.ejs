@@ -1,0 +1,11 @@
+
+
+<% if (typeof errorMessages !== 'undefined' && errorMessages.length) { %>
+  <div class="alert alert-danger" role="alert">
+    <ul class="mb-0">
+      <% errorMessages.forEach(msg => { %>
+        <li><%= msg %></li>
+      <% }) %>
+    </ul>
+  </div>
+<% } %>

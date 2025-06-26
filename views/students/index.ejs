@@ -1,0 +1,50 @@
+<%- include('../partials/header') %>
+
+<main class="bg-light min-vh-100 py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Students</h2>
+
+    <div class="d-flex justify-content-center justify-content-md-end mb-3">
+      <a href="/students/add" class="btn btn-primary">Add Student</a>
+    </div>
+
+    <!-- Responsive Table -->
+    <div class="table-responsive">
+      <table class="table table-striped table-bordered align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Name</th>
+            <th>Roll No</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Department</th>
+            <th>Year</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(student => { %>
+            <tr>
+              <td><%= student.name || ''%></td>
+              <td><%= student.roll_no %></td>
+              <td><%= student.email %></td>
+              <td><%= student.phone %></td>
+              <td><%= student.department %></td>
+              <td><%= student.year %></td>
+              <td>
+                <div class="d-flex flex-wrap gap-1">
+                  <a href="/students/edit/<%= student.id %>" class="btn btn-sm btn-warning">Edit</a>
+                  <a href="/students/delete/<%= student.id %>" class="btn btn-sm btn-danger" onclick="return confirm('Delete this student?')">Delete</a>
+                  <a href="/marks/<%= student.id %>" class="btn btn-sm btn-info text-white">Marks</a>
+                  <a href="/marks/view/<%= student.id %>" class="btn btn-sm btn-info text-white">View Marks</a>
+                </div>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

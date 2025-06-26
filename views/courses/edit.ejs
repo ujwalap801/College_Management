@@ -1,0 +1,87 @@
+<%- include('../partials/header') %>
+
+<main class="bg-light min-vh-100 py-5">
+  <div class="container mt-4">
+    <h2><%= course ? 'Edit Course' : 'Add Course' %></h2>
+
+     
+ <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+  <div class="alert alert-danger">
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= error %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+
+    <form 
+      action="<%= course ? '/courses/edit/' + course.id : '/courses/add' %>" 
+      method="POST" 
+      class="needs-validation" 
+      novalidate
+    >
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input 
+          type="text" 
+          name="name" 
+          id="name" 
+          class="form-control" 
+          value="<%= course?.name || '' %>" 
+          required
+        >
+        <div class="invalid-feedback">Please enter the course name.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="code" class="form-label">Code</label>
+        <input 
+          type="text" 
+          name="code" 
+          id="code" 
+          class="form-control" 
+          value="<%= course?.code || '' %>" 
+          required
+        >
+        <div class="invalid-feedback">Please enter the course code.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="department" class="form-label">Department</label>
+        <input 
+          type="text" 
+          name="department" 
+          id="department" 
+          class="form-control" 
+          value="<%= course?.department || '' %>" 
+          required
+        >
+        <div class="invalid-feedback">Please enter the department.</div>
+      </div>
+
+      <div class="mb-3">
+        <label for="credits" class="form-label">Credits</label>
+        <input 
+          type="number" 
+          name="credits" 
+          id="credits" 
+          class="form-control" 
+          min="1" 
+          max="10" 
+          value="<%= course?.credits || '' %>" 
+          required
+        >
+        <div class="invalid-feedback">Please enter credits between 1 and 10.</div>
+      </div>
+
+      <button type="submit" class="btn btn-success">Save</button>
+    </form>
+  </div>
+</main>
+
+
+
+<%- include('../partials/footer') %>
+<!-- Load form validation script -->
+<script src="/js/form-validation.js"></script>
