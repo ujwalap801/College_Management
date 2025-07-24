@@ -1,6 +1,6 @@
 # 🎓 CollegeConnect – College Management System
 
-A full-stack web application for efficiently managing college data including students, courses, faculty, and marks. **CollegeConnect** offers real-time interaction with a relational database and ensures robust data integrity through both client-side and server-side validation.
+A full-stack web application for efficiently managing college data, including students, courses, faculty, and marks. **CollegeConnect** offers real-time interaction with a relational database and ensures robust data integrity through both client-side and server-side validation.
 ---
 
 ## 📝 Description
@@ -46,4 +46,4 @@ git clone https://github.com/ujwalap801/College_Management.git
 npm install
 
 # Start the development server
-node index.js
+node app.js
